@@ -1,25 +1,38 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React ,{useState}from "react";
+import { TabManager } from "./tab-manager.jsx";
+import "./App.css";
+import Tweet from "./tweet";
+import Sidebar from "./side_bar.jsx";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+
+const Tabs = [
+];
+
+const App = () => {
+
+   const[activeTab, handleTab] = useState();
+   const[inputText, setInputText] = useState("");
+   const[tweets, setTweets] = useState([]);
+   const[picture,setPicture] = useState([]);
+
+
+   return(
+     <div classname = 'App'>
+       <div className="flexbox-container">
+       <TabManager tabs={Tabs} activeTab={activeTab} handleTab={handleTab} />
+       <div className="tab-content">
+       <div>{activeTab}</div>
+       </div>
+       <Sidebar />
+       <Tweet inputText={inputText}
+              setInputText={setInputText}
+              tweets={tweets}
+              setTweets={setTweets}
+              picture={picture}
+              setPicture={setPicture}
+        />
+      </div>
+     </div>
   );
 }
 
